@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 数据库文件（本地数据，不进版本库）
+*.db
+*.sqlite3
+
+# 环境变量（可能包含 API Key）
+.env
+
+# 编辑器
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db
