@@ -151,6 +151,34 @@ def find_by_month():
         print(f"{month}  共 {count} 笔  {total:.2f} 元")
 
 
+def delete_record():
+    records = load_records()
+    if not records:
+        print("还没有记录")
+        return
+    for i, parts in enumerate(records, start=1):
+        print(f"{i}.", end=" ")
+        print_row(parts)
+    text = input("要删第几条：").strip()
+    if text == "":
+        print("编号不能为空")
+        return
+    if not text.isdigit():
+        print("请输入数字")
+        return
+    n = int(text)
+    if n < 1 or n > len(records):
+        print(f"没有第「{n}」条")
+        return
+    target = records[n - 1]
+    print("要删除的是：")
+    print_row(target)
+    del records[n - 1]
+    with open("records.txt", "w", encoding="utf-8") as f:
+        for parts in records:
+            f.write(",".join(parts) + "\n")
+    print("已删除")
+
 while True:
     print()
     print("=== 记账本 ===")
@@ -161,7 +189,8 @@ while True:
     print("5. 按月查")
     print("6. 按天汇总")
     print("7. 看最贵的一笔")
-    print("8. 退出")
+    print("8. 删除一笔")
+    print("9. 退出")
     try:
         x = int(input("请选择："))
     except ValueError:
@@ -183,6 +212,8 @@ while True:
     elif x == 7:
         find_max()
     elif x == 8:
+        delete_record()
+    elif x == 9:
         print("退出")
         break
     else:

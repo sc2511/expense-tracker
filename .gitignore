@@ -22,3 +22,4 @@ Thumbs.db
 
 # 真实账目数据（个人隐私，不进版本库）
 records.txt
+records_backup.txt
